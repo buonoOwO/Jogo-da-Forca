@@ -3,10 +3,6 @@
 #include <string.h>
 #include <time.h>
 
-void abertura_jogo();
-void escolhe_tema(char *palavra_secreta);
-void escolhe_palavra(const char *arquivo_desejado, char *palavra);
-
 int main(void) {
     char palavra_secreta[100];
 
