@@ -3,16 +3,7 @@
 #include <string.h>
 #include <time.h>
 
-int main(void) {
-    char palavra_secreta[100];
-
-    abertura_jogo();
-    escolhe_tema(palavra_secreta);
-
-    printf("Palavra escolhida: %s\n", palavra_secreta);
-
-    return 0;
-}
+char palavra_secreta[100];
 
 // Função de abertura do jogo
 void abertura_jogo() {
@@ -73,12 +64,13 @@ void escolhe_tema(char *palavra_secreta) {
             break;
         case 9:
             printf("\n( ╹ -╹)?\n");
-            printf("Que pena... Volte quando estiver pronto para um desafio!\n\n");
+            printf("Que pena... Não sabia que você desisitia tão facilmente.\n")
+            printf ("Volte quando estiver pronto para um desafio!\n\n");
             palavra_secreta[0] = '\0'; // palavra vazia
-            return;
+            return 1;
         default:
             printf("\nTema inválido. Por favor, tente de novo.\n\n");
-            palavra_secreta[0] = '\0';
+            palavra_secreta[0] = '\0'; // palavra vazia também
             return;
     }
 }
@@ -104,4 +96,14 @@ void escolhe_palavra(const char *arquivo_desejado, char *palavra) {
     }
 
     fclose(arquivo);
+}
+
+int main(void) {
+
+    abertura_jogo();
+    escolhe_tema(palavra_secreta);
+
+    printf("Palavra escolhida: %s\n", palavra_secreta);
+
+    return 0;
 }
