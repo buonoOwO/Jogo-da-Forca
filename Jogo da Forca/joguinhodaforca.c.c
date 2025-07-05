@@ -64,7 +64,7 @@ void escolhe_tema(char *palavra_secreta) {
             break;
         case 9:
             printf("\n( ╹ -╹)?\n");
-            printf("Que pena... Não sabia que você desisitia tão facilmente.\n")
+            printf("Que pena... Não sabia que você desistia tão facilmente.\n")
             printf ("Volte quando estiver pronto para um desafio!\n\n");
             palavra_secreta[0] = '\0'; // palavra vazia
             return 1;
