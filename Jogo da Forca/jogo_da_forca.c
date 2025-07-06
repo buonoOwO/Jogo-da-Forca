@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
 #include "funcoes_forca.h"
 
 char palavra_secreta[TAMANHO];
@@ -113,15 +115,45 @@ void escolhe_palavra(const char* arquivo_desejado){
 
 }
 
+// Função que trata dos chutes dados pelo jogador
+void chuta(){
+    char chute;
+    char entrada [160];
+
+    printf ("\nQual a letra?: ");
+    fgets(entrada, sizeof entrada, stdin);
+    sscanf (entrada, "%c", &chute);
+
+    if (verifica_chute(chute)){
+        printf ("Você acertou! A palavra tem a letra %c.\n", chute);
+    } else {
+        printf ("Você errou... A palavra não tem a letra %c.\n", chute);
+    }
+}
+
+// Função que verifica se o chute está certo ou não
+bool verifica_chute(char chute){
+    for (int i = 0; i < strlen(palavra_secreta); i++){
+
+        if (chute == palavra_secreta[i]){
+            return true;
+
+        }
+    }
+
+    return false;
+}
 
 int main (void){
 
     abertura_jogo();
     escolhe_tema();
 
+    do {
+    chuta();
+    } while (!ganhou() && !enforcou());
+
     printf ("\nPalavra escolhida: %s", palavra_secreta);
 
     return 0;
 }
-
-
