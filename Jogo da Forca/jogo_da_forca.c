@@ -1,3 +1,16 @@
+/*
+
+DESCRIÇÃO:Esse jogo da forca consiste em um desafio onde o jogador 
+deve adivinhar uma palavra escondida,a cada erro, uma parte do 
+desenho da forca é montada.
+
+REQUER:Que o jogador selecione o tema e adivinhar a palavra antes que o 
+desenho da forca seja completado.
+
+ASSEGURA:O jogo verifica se cada jogada houve vitória ou derrota
+
+*/
+
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -8,6 +21,7 @@
 char palavra_secreta[TAMANHO];
 int chutes_errados = 0;
 int tentativas = 6;
+char registro_letras[26];
 
 // Função de abertura do jogo
 void abertura_jogo() {
@@ -98,24 +112,19 @@ bool verifica_chute(char chute) {
 void chuta(char palavra[]) {
     char entrada[160];
     char chute;
-    
-    tentativas >= 0 ? printf("__________     \n"): printf("               \n");
-    tentativas >= 0 ? printf(" |/      |     \n"): printf("               \n");
-    tentativas >= 1 ? printf(" |             \n") printf(" |      (_)    \n");
-    tentativas >= 2 ? printf(" |             \n") printf(" |      \\|/   \n");
-    tentativas >= 3 ? printf(" |             \n") printf(" |       |     \n");
-    tentativas >= 4 ? printf(" |             \n"); printf(" |      / \\   \n");
-                      printf(" |             \n");
-                      printf("_|___          \n");
+
+    desenha_forca();
     
     printf ("\nTentativas: %d", tentativas);
+    
+    
 
     printf("\nQual a letra?: ");
     fgets(entrada, sizeof entrada, stdin);
     sscanf(entrada, "%c", &chute);
 
     if (verifica_chute(chute)) {
-        printf("Você acertou! A palavra tem a letra %c.\n", chute);
+        printf("\nVocê acertou! A palavra tem a letra %c.\n", chute);
         for (int i = 0; i < strlen(palavra_secreta); i++) {
             if (palavra_secreta[i] == chute) {
                 palavra[i] = chute;
@@ -123,8 +132,25 @@ void chuta(char palavra[]) {
         }
     } else {
         tentativas = tentativas - 1;
-        printf("Você errou... A palavra não tem a letra %c.\n", chute);
+        printf("\nVocê errou... A palavra não tem a letra %c.\n", chute);
+        
+        if (tentativas == 0){
+            desenha_forca();
+        }
     }
+}
+
+// Função que ilustra a forca
+void desenha_forca(){
+    printf("__________       \n"); 
+    printf(" |/      |       \n"); 
+    printf(" |      %c%c%c   \n", (tentativas <=  5?'(':' '), (tentativas <= 5?'_':' '), (tentativas <= 5?')':' '));
+    printf(" |      %c%c%c   \n", (tentativas <= 3? '\\': ' '), (tentativas <= 4? '|':' '), (tentativas <= 2? '/':' '));
+    printf(" |       %c      \n", (tentativas <= 4? '|':' '));
+    printf(" |      %c %c    \n", (tentativas <= 1? '/':' '), (tentativas == 0? '\\':' '));
+    printf(" |               \n");
+    printf("_|___            \n");
+    
 }
 
 // Exibe o estado atual da palavra com espaços
@@ -146,16 +172,15 @@ bool ganhou(char palavra[]) {
     return strcmp(palavra, palavra_secreta) == 0;
 }
 
-// Programa principal
 int main(void) {
     char palavra[TAMANHO];
 
     abertura_jogo();
     escolhe_tema();
     sublinha_palavra(palavra);
-
+    
+    // Mostra o progresso da palavra
     do {
-        // Mostra o progresso da palavra
         printf("\nPalavra: ");
         for (int i = 0; i < strlen(palavra_secreta); i++) {
             printf("%c ", palavra[i]);
@@ -168,8 +193,10 @@ int main(void) {
 
     if (ganhou(palavra)) {
         printf("\nParabéns! Você acertou a palavra: %s\n", palavra_secreta);
+        printf ("Você é um bom jogador! Deveria tentar novamente.\n");
     } else {
         printf("\nPuxa! Você foi enforcado. A palavra era: %s\n", palavra_secreta);
+        printf ("Tente novamente, tenho certeza que você sairá melhor na próxima partida.\n");
     }
 
     return 0;
