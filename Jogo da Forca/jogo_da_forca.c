@@ -21,7 +21,6 @@ ASSEGURA:O jogo verifica se cada jogada houve vitória ou derrota
 char palavra_secreta[TAMANHO];
 int chutes_errados = 0;
 int tentativas = 6;
-char registro_letras[26];
 
 // Função de abertura do jogo
 void abertura_jogo() {
@@ -112,33 +111,44 @@ bool verifica_chute(char chute) {
 void chuta(char palavra[]) {
     char entrada[160];
     char chute;
-
-    desenha_forca();
+    int qtde_chutes = 0;
+    char registra_letra[26];
     
-    printf ("\nTentativas: %d", tentativas);
+        desenha_forca();
+        
+        printf ("Letras chutadas:");
+        
+        for (int i = 0; i < qtde_chutes; i++){
+            printf ("%c ", registra_letra[i]);
+        }
     
-    
+        printf ("\nTentativas: %d", tentativas);
 
-    printf("\nQual a letra?: ");
-    fgets(entrada, sizeof entrada, stdin);
-    sscanf(entrada, "%c", &chute);
+        printf("\nQual a letra?: ");
+        fgets(entrada, sizeof entrada, stdin);
+        sscanf(entrada, "%c", &chute);
+        
+        registra_letra[qtde_chutes] = chute;
+        
+        qtde_chutes++;
 
-    if (verifica_chute(chute)) {
-        printf("\nVocê acertou! A palavra tem a letra %c.\n", chute);
-        for (int i = 0; i < strlen(palavra_secreta); i++) {
-            if (palavra_secreta[i] == chute) {
-                palavra[i] = chute;
+        if (verifica_chute(chute)) {
+            printf("\nVocê acertou! A palavra tem a letra %c.\n", chute);
+            for (int i = 0; i < strlen(palavra_secreta); i++) {
+                if (palavra_secreta[i] == chute) {
+                    palavra[i] = chute;
+                }
+            }
+        } else {
+            tentativas = tentativas - 1;
+            printf("\nVocê errou... A palavra não tem a letra %c.\n", chute);
+        
+            if (tentativas == 0){
+                desenha_forca();
             }
         }
-    } else {
-        tentativas = tentativas - 1;
-        printf("\nVocê errou... A palavra não tem a letra %c.\n", chute);
-        
-        if (tentativas == 0){
-            desenha_forca();
-        }
     }
-}
+
 
 // Função que ilustra a forca
 void desenha_forca(){
@@ -172,15 +182,28 @@ bool ganhou(char palavra[]) {
     return strcmp(palavra, palavra_secreta) == 0;
 }
 
+//Função que limpa o terminal para evitar a poluição visual quando necessário
+void limpar_terminal(){
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system ("clear");
+    #endif
+}
+
 int main(void) {
     char palavra[TAMANHO];
 
     abertura_jogo();
     escolhe_tema();
+    limpar_terminal();
+    
     sublinha_palavra(palavra);
     
     // Mostra o progresso da palavra
     do {
+        limpar_terminal();
+        
         printf("\nPalavra: ");
         for (int i = 0; i < strlen(palavra_secreta); i++) {
             printf("%c ", palavra[i]);
