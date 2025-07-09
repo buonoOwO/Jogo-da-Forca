@@ -1,52 +1,41 @@
-50
-the legend of zelda
-super mario odyssey
-god of war
-red dead redemption
-the last of us
-elden ring
+40
+skyrim
+warframe
+tekken
+subnautica
+undertale
+hearthstone
 hollow knight
 hades
-super smash bros
-animal crossing
+diablo
+fifa
 minecraft
 fortnite
-league of legends
+fallout
 valorant
 overwatch
-counter-strike
-call of duty
-apex legends
-resident evil
-final fantasy
-cyberpunk 2077
-grand theft auto
-dark souls
-sekiro: shadows die twice
+uncharted
+rust
+dota
+doom
+halo
+left4dead
+payday
+simcity
+borderlands
 bloodborne
-stardew valley
+superhot
 terraria
 among us
 it takes two
 portal
-half-life
-bioshock infinite
-dead cells
+yakuza
 celeste
 cuphead
-super meat boy
-pokémon emerald
-metroid dread
 splatoon
 bayonetta 
-persona 5
-nier: automata
-monster hunter
 tetris
-rocket league
-fall guys
 inside
 limbo
 journey
 firewatch
-
