@@ -1,4 +1,4 @@
-50
+40
 brasil
 argentina
 chile
@@ -13,9 +13,7 @@ inglaterra
 australia
 japao
 china
-coreia do sul
 india
-africa do sul
 egito
 russia
 suecia
@@ -24,14 +22,7 @@ finlandia
 polonia
 grecia
 turquia
-arabia saudita
-estados unidos
-nova york
-los angeles
 miami
-sao paulo
-rio de janeiro
-belo horizonte
 salvador
 recife
 curitiba
@@ -42,7 +33,6 @@ fortaleza
 natal
 campinas
 santos
-porto alegre
 joinville
 londres
 paris
