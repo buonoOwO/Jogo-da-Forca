@@ -11,3 +11,4 @@ void sublinha_palavra(char palavra[]);
 bool enforcou();
 bool ganhou(char palavra[]);
 void limpar_terminal();
+bool ja_chutou(char chute);
