@@ -26,12 +26,37 @@ int qtde_chutes = 0;
 char registra_letra[26];
 
 // Função de abertura do jogo
-void abertura_jogo() {
+void abertura_jogo(){
+    int opcao;
+    char entrada[160];
+    
     printf("\n\n");
     printf("*************************************************\n");
-    printf("********** Bem-vindo ao Jogo da Forca! **********\n");
+    printf("***                                           ***\n");
+    printf("***        Bem-vindo ao Jogo da Forca!        ***\n");
+    printf("***              ⊹ ₊ ◝(ᵔᵕᵔ)◜ ₊ ⊹              ***\n");
+    printf("***                                           ***\n");
     printf("*************************************************\n");
     printf("\n\n");
+    printf("[1] Iniciar\n");
+    printf("[2] Sair\n\n");
+    
+    fgets(entrada, sizeof entrada, stdin);
+    sscanf (entrada, "%d", &opcao);
+    
+    switch (opcao){
+        case 1:
+            return; // retorna para a main
+        case 2:
+            limpar_terminal();
+            printf("\n( ╹ -╹)?\n");
+            printf("Que pena... Não sabia que você desistia fácil assim.\n");
+            printf("Volte quando realmente quiser um desafio.\n\n");
+            exit(0);
+        default:
+            limpar_terminal();
+            abertura_jogo();
+    }
 }
 
 // Função para escolher o tema do jogo
@@ -66,17 +91,19 @@ void escolhe_tema() {
         case 7: escolhe_palavra("corpo_humano.txt"); break;
         case 8: escolhe_palavra("cores.txt"); break;
         case 9:
+            limpar_terminal();
             printf("\n( ╹ -╹)?\n");
             printf("Que pena... Não sabia que você desistia fácil assim.\n");
             printf("Volte quando realmente quiser um desafio.\n\n");
             exit(0);
         default:
-            printf("\nTema inválido, tente novamente.\n\n");
+            limpar_terminal();
+            printf("Tema inválido, tente novamente.\n\n");
             escolhe_tema();
     }
 }
 
-// Função que escolhe a palavra secreta de um arquivo
+//Função que escolhe a palavra secreta de um arquivo
 void escolhe_palavra(const char* arquivo_desejado) {
     FILE* arquivo = fopen(arquivo_desejado, "r");
 
@@ -98,7 +125,7 @@ void escolhe_palavra(const char* arquivo_desejado) {
     fclose(arquivo);
 }
 
-// Função que verifica se o chute está correto
+//Função que verifica se o chute está correto
 bool verifica_chute(char chute) {
     chute = tolower(chute); //vai converter para minúsculo
     
@@ -112,22 +139,22 @@ bool verifica_chute(char chute) {
     return false;
 }
 
-// Função que trata os chutes do jogador
+//Função que trata os chutes do jogador
 void chuta(char palavra[]) {
     char entrada[160];
     char chute;
     
         desenha_forca();
         
-        printf ("Letras chutadas:");
+        printf ("\nTentativas: %d\n", tentativas);
+        
+        printf ("Letras chutadas: ");
         
         for (int i = 0; i < qtde_chutes; i++){
             printf ("%c ", registra_letra[i]);
         }
-    
-        printf ("\nTentativas: %d", tentativas);
 
-        printf("\nQual a letra?: ");
+        printf("\n\nQual a letra?: ");
         fgets(entrada, sizeof entrada, stdin);
         sscanf(entrada, "%c", &chute);
                 
@@ -136,15 +163,14 @@ void chuta(char palavra[]) {
             return; // para evitar o excesso de if e else
         } 
         
+        chute = tolower(chute);
+        
         registra_letra[qtde_chutes] = chute;
         
         qtde_chutes++;
 
         if (verifica_chute(chute)) {
             
-            chute = tolower(chute);
-            
-            printf("\nVocê acertou! A palavra tem a letra %c.\n", chute);
             for (int i = 0; i < strlen(palavra_secreta); i++) {
                 if (palavra_secreta[i] == chute) {
                     palavra[i] = chute;
@@ -152,15 +178,15 @@ void chuta(char palavra[]) {
             }
         } else {
             tentativas = tentativas - 1;
-            printf("\nVocê errou... A palavra não tem a letra %c.\n", chute);
         
             if (tentativas == 0){
+                limpar_terminal();
                 desenha_forca();
             }
         }
     }
 
-// Função que verifica se a letra já foi chutada antes
+//Função que verifica se a letra já foi chutada antes
 bool ja_chutou(char chute) {
     chute = tolower(chute);
     
@@ -172,7 +198,7 @@ bool ja_chutou(char chute) {
     return false;
 }
 
-// Função que ilustra a forca
+//Função que ilustra a forca
 void desenha_forca(){
     printf("__________       \n"); 
     printf(" |/      |       \n"); 
@@ -185,7 +211,7 @@ void desenha_forca(){
     
 }
 
-// Exibe o estado atual da palavra com espaços
+//Exibe o estado atual da palavra com espaços
 void sublinha_palavra(char palavra[]) {
     int tamanho = strlen(palavra_secreta);
     for (int i = 0; i < tamanho; i++) {
@@ -194,12 +220,12 @@ void sublinha_palavra(char palavra[]) {
     palavra[tamanho] = '\0';
 }
 
-// Verifica se o jogador foi enforcado
+//Verifica se o jogador foi enforcado
 bool enforcou() {
     return chutes_errados >= 6;
 }
 
-// Verifica se o jogador ganhou
+//Verifica se o jogador ganhou
 bool ganhou(char palavra[]) {
     return strcmp(palavra, palavra_secreta) == 0;
 }
@@ -217,12 +243,13 @@ int main(void) {
     char palavra[TAMANHO];
 
     abertura_jogo();
+    limpar_terminal();
     escolhe_tema();
     limpar_terminal();
     
     sublinha_palavra(palavra);
     
-    // Mostra o progresso da palavra
+    //Mostra o progresso da palavra
     do {
         limpar_terminal();
         
@@ -237,6 +264,8 @@ int main(void) {
     } while (!ganhou(palavra) && !enforcou());
 
     if (ganhou(palavra)) {
+        limpar_terminal();
+        desenha_forca();
         printf("\nParabéns! Você acertou a palavra: %s\n", palavra_secreta);
         printf ("Você é um bom jogador! Deveria tentar novamente.\n");
     } else {
