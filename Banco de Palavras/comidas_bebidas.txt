@@ -1,12 +1,10 @@
-50
+44
 arroz
 feijao
 macarrao
 lasanha
 pizza
 hamburguer
-cachorro-quente
-batata-frita
 panqueca
 strogonoff
 farofa
@@ -28,7 +26,6 @@ agua
 refrigerante
 suco
 cafe
-cha
 leite
 vitamina
 achocolatado
@@ -37,8 +34,6 @@ vinho
 caipirinha
 milkshake
 energetico
-agua de coco
-caldo de cana
 limonada
 cappuccino
 mate
@@ -48,4 +43,3 @@ smoothie
 mojito
 kombucha
 expresso
-chocolate-quente
