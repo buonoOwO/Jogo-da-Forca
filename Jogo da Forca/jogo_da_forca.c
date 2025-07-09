@@ -21,6 +21,8 @@ ASSEGURA:O jogo verifica se cada jogada houve vitória ou derrota
 char palavra_secreta[TAMANHO];
 int chutes_errados = 0;
 int tentativas = 6;
+int qtde_chutes = 0;
+char registra_letra[26];
 
 // Função de abertura do jogo
 void abertura_jogo() {
@@ -111,8 +113,6 @@ bool verifica_chute(char chute) {
 void chuta(char palavra[]) {
     char entrada[160];
     char chute;
-    int qtde_chutes = 0;
-    char registra_letra[26];
     
         desenha_forca();
         
