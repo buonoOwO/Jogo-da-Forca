@@ -1,51 +1,44 @@
-50
-dom quixote
-guerra e paz
-cem anos de solidao
-o senhor dos aneis
-o hobbit
-a metamorfose
-o velho e o mar
-em busca do tempo perdido
-o grande gatsby
-moby dick
-o sol e suas flores
-o nome da rosa
-a divina comedia
-o processo
-a revolucao dos bichos
-a cidade e as serras
-os miseraveis
-o retrato de dorian gray
-o perfume
-a casa dos espiritos
-os irmaos karamazov
-o apanhador no campo de centeio
-a culpa e das estrelas
-a menina que roubava livros
-o codigo da vinci
-o pequeno principe
-o diario de anne frank
-a sombra do vento
-cento e vinte dias de sodoma
-a peste
-o silencio dos inocentes
-o senhor das moscas
-a estrada
-o lobo da estepe
-a cabana
-o alquimista
-a menina do vale
-o codigo dos cavaleiros
-a historia sem fim
-o caçador de pipas
-o mestre e margarida
-o clube da luta
-a menina que brincava com fogo
-o curioso incidente do cachorro a meia noite
-a revolta de atlas
-o livro das ilusoes
-o caçador de pipas
-a hora da estrela
-o menino do pijama listrado
-o ultimo dos moicanos
+43
+vermelho
+azul
+amarelo
+verde
+laranja
+roxo
+rosa
+marrom
+preto
+branco
+cinza
+bege
+turquesa
+dourado
+prateado
+vinho
+caramelo
+coral
+lavanda
+creme
+mostarda
+cobre
+jade
+oliva
+pistache
+esmeralda
+ciano
+magenta
+gelo
+grafite
+safira
+menta
+castanho
+terracota
+marfim
+ferrugem
+areia
+ocre
+rubi
+cinzento
+bronze
+chocolate
+malva
