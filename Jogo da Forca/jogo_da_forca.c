@@ -12,6 +12,7 @@ ASSEGURA:O jogo verifica se cada jogada houve vitória ou derrota
 */
 
 #include <stdio.h>
+#include <ctype.h>
 #include <time.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -48,7 +49,7 @@ void escolhe_tema() {
     printf("5 - Personagens\n");
     printf("6 - Filmes\n");
     printf("7 - Corpo humano\n");
-    printf("8 - Livros\n\n");
+    printf("8 - Cores\n\n");
     printf("9 - Sair\n\n");
 
     fgets(entrada, sizeof entrada, stdin);
@@ -63,7 +64,7 @@ void escolhe_tema() {
         case 5: escolhe_palavra("personagens.txt"); break;
         case 6: escolhe_palavra("filmes.txt"); break;
         case 7: escolhe_palavra("corpo_humano.txt"); break;
-        case 8: escolhe_palavra("livros.txt"); break;
+        case 8: escolhe_palavra("cores.txt"); break;
         case 9:
             printf("\n( ╹ -╹)?\n");
             printf("Que pena... Não sabia que você desistia fácil assim.\n");
@@ -99,6 +100,8 @@ void escolhe_palavra(const char* arquivo_desejado) {
 
 // Função que verifica se o chute está correto
 bool verifica_chute(char chute) {
+    chute = tolower(chute); //vai converter para minúsculo
+    
     for (int i = 0; i < strlen(palavra_secreta); i++) {
         if (chute == palavra_secreta[i]) {
             return true;
@@ -127,12 +130,20 @@ void chuta(char palavra[]) {
         printf("\nQual a letra?: ");
         fgets(entrada, sizeof entrada, stdin);
         sscanf(entrada, "%c", &chute);
+                
+        if (ja_chutou(chute)){
+            printf ("Você já chutou essa letra antes. Tente outra.");
+            return; // para evitar o excesso de if e else
+        } 
         
         registra_letra[qtde_chutes] = chute;
         
         qtde_chutes++;
 
         if (verifica_chute(chute)) {
+            
+            chute = tolower(chute);
+            
             printf("\nVocê acertou! A palavra tem a letra %c.\n", chute);
             for (int i = 0; i < strlen(palavra_secreta); i++) {
                 if (palavra_secreta[i] == chute) {
@@ -149,6 +160,17 @@ void chuta(char palavra[]) {
         }
     }
 
+// Função que verifica se a letra já foi chutada antes
+bool ja_chutou(char chute) {
+    chute = tolower(chute);
+    
+    for (int i = 0; i < qtde_chutes; i++) {
+        if (tolower(registra_letra[i]) == chute) {
+            return true;
+        }
+    }
+    return false;
+}
 
 // Função que ilustra a forca
 void desenha_forca(){
