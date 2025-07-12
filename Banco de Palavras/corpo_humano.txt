@@ -1,12 +1,7 @@
-50
-cabeça
-pescoço
+44
 ombro
-braço
-antebraço
 cotovelo
 pulso
-baço
 dedo
 unha
 peito
@@ -38,7 +33,6 @@ gengiva
 palato
 queixo
 veia
-pescoço
 umbigo
 axila
 bacia
@@ -49,4 +43,3 @@ bexiga
 rosto
 pupila
 palma
-estomago
