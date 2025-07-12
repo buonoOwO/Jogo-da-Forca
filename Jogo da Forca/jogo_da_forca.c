@@ -126,10 +126,10 @@ void escolhe_palavra(const char* arquivo_desejado) {
 }
 
 //Função que verifica se o chute está correto
-bool verifica_chute(char chute) {
+bool verifica_chute(char chute, int *tamanho) {
     chute = tolower(chute); //vai converter para minúsculo
-    
-    for (int i = 0; i < strlen(palavra_secreta); i++) {
+
+    for (int i = 0; i < (*tamanho); i++) {
         if (chute == palavra_secreta[i]) {
             return true;
         }
@@ -140,7 +140,7 @@ bool verifica_chute(char chute) {
 }
 
 //Função que trata os chutes do jogador
-void chuta(char palavra[]) {
+void chuta(char palavra[], int *tamanho) {
     char entrada[160];
     char chute;
     
@@ -169,9 +169,9 @@ void chuta(char palavra[]) {
         
         qtde_chutes++;
 
-        if (verifica_chute(chute)) {
-            
-            for (int i = 0; i < strlen(palavra_secreta); i++) {
+        if (verifica_chute(chute, tamanho)) {
+
+            for (int i = 0; i < (*tamanho); i++) {
                 if (palavra_secreta[i] == chute) {
                     palavra[i] = chute;
                 }
@@ -212,12 +212,12 @@ void desenha_forca(){
 }
 
 //Exibe o estado atual da palavra com espaços
-void sublinha_palavra(char palavra[]) {
-    int tamanho = strlen(palavra_secreta);
-    for (int i = 0; i < tamanho; i++) {
+void sublinha_palavra(char palavra[], int *tamanho) {
+    
+    for (int i = 0; i < (*tamanho); i++) {
         palavra[i] = '_';
     }
-    palavra[tamanho] = '\0';
+    palavra[(*tamanho)] = '\0';
 }
 
 //Verifica se o jogador foi enforcado
@@ -240,26 +240,29 @@ void limpar_terminal(){
 }
 
 int main(void) {
+
     char palavra[TAMANHO];
 
     abertura_jogo();
     limpar_terminal();
     escolhe_tema();
     limpar_terminal();
+
+    int tamanho = strlen(palavra_secreta);
     
-    sublinha_palavra(palavra);
+    sublinha_palavra(palavra, &tamanho);
     
     //Mostra o progresso da palavra
     do {
         limpar_terminal();
         
         printf("\nPalavra: ");
-        for (int i = 0; i < strlen(palavra_secreta); i++) {
+        for (int i = 0; i < tamanho; i++) {
             printf("%c ", palavra[i]);
         }
         printf("\n");
 
-        chuta(palavra);
+        chuta(palavra, &tamanho);
 
     } while (!ganhou(palavra) && !enforcou());
 
@@ -267,10 +270,10 @@ int main(void) {
         limpar_terminal();
         desenha_forca();
         printf("\nParabéns! Você acertou a palavra: %s\n", palavra_secreta);
-        printf ("Você é um bom jogador! Deveria tentar novamente.\n");
+        printf ("Você é um bom jogador! Deveria tentar novamente.\n\n");
     } else {
         printf("\nPuxa! Você foi enforcado. A palavra era: %s\n", palavra_secreta);
-        printf ("Tente novamente, tenho certeza que você sairá melhor na próxima partida.\n");
+        printf ("Tente novamente, tenho certeza que você sairá melhor na próxima partida.\n\n");
     }
 
     return 0;
