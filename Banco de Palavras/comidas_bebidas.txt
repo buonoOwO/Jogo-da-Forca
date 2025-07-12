@@ -1,7 +1,5 @@
-44
+37
 arroz
-feijao
-macarrao
 lasanha
 pizza
 hamburguer
@@ -9,11 +7,9 @@ panqueca
 strogonoff
 farofa
 moqueca
-acaraje
 empada
 pastel
 coxinha
-pao
 queijo
 churrasco
 salada
@@ -22,10 +18,8 @@ sopa
 risoto
 rabada
 tapioca
-agua
 refrigerante
 suco
-cafe
 leite
 vitamina
 achocolatado
@@ -33,7 +27,6 @@ cerveja
 vinho
 caipirinha
 milkshake
-energetico
 limonada
 cappuccino
 mate
