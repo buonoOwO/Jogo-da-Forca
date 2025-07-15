@@ -10,7 +10,7 @@
  - Exibição de menu inicial com opções de iniciar ou sair;
  - Escolha de tema entre 9 categorias diferentes (como filmes, animais, profissões, etc.);
  - Leitura de palavras aleatórias a partir de arquivos .txt;
- - Exibição da palavra com letras escondidas, substituídas por _;
+ - Exibição da palavra com letras escondidas, substituídas por "_";
  - Registro e exibição das letras já chutadas;
  - Atualização do desenho da forca a cada erro, com limite de 6 tentativas;
  - Mensagem final personalizada em caso de vitória ou derrota;
