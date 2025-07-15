@@ -19,7 +19,4 @@
 
 ## Participantes do projeto:
 
-Juliana Andrade Buono
-Kamila de Freitas Alves
-Isabely Carvalho Lima
-Vitória da Silva Costa
+Juliana Andrade Buono, Kamila de Freitas Alves, Isabely Carvalho Lima e Vitória da Silva Costa
